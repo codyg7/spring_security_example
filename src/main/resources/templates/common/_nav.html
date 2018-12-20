@@ -1,0 +1,34 @@
+<div>
+	<a href="/">Home</a>
+	
+	<!-- this is mustache syntax for "if" we have a user passed into the page then we are logged in show show the logout button -->
+	{{#user}}
+		<form method="post" action="/logout">
+			<button>Logout</button>
+			<input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
+		</form>
+	{{/user}}
+	
+	<!-- this is the else saying we dont have a logged in user -->
+	{{^user}}
+	<a href="/login">Login</a>
+	{{/user}}
+</div>
+
+
+<!-- 
+
+Thymeleaf may look something like the following
+
+<div th:if="${user}">
+   <form method="post" action="/logout">
+		<button>Logout</button>
+		<input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
+	</form>
+</div>
+
+<div th:unless="${user}">
+   <a href="/login">Login</a>
+</div>
+
+ -->
